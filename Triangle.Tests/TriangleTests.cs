@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Triangle.Tests
 {
     [TestClass]
-    public class TriangleTets
+    public class TriangleTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -29,13 +29,12 @@ namespace Triangle.Tests
         public void CreateBySideAndTwoAngle_SumOfAnglesIsGreaterThan180_ThrowArgumentException()
         {
             double goodSide = 5;
-            double firstAngle = 150;
-            double secondAngle = 40;
-            Triangle.CreateBySideAndTwoAngle(goodSide, firstAngle, secondAngle);
+            double badAngle = 95;
+            Triangle.CreateBySideAndTwoAngle(goodSide, badAngle, badAngle);
         }
 
         [TestMethod]
-        public void GetArea_SidesAre_3_And_4_And_5_ReturnAreaEquals6()
+        public void GetArea_GoodSides_ReturnAreaEquals6()
         {
             double firstSide = 3;
             double secondSide = 4;
@@ -45,7 +44,7 @@ namespace Triangle.Tests
         }
 
         [TestMethod]
-        public void GetArea_SidesAre_3_And_4_AngleIs90_ReturnAreaEquals6()
+        public void GetArea_GoodSidesAndAngle_ReturnAreaEquals6()
         {
             double firstSide = 3;
             double secondSide = 4;
@@ -55,7 +54,7 @@ namespace Triangle.Tests
         }
 
         [TestMethod]
-        public void GetArea_SideIs7_AnglesAre_60_And_60_ReturnAreaEquals12_Point_25()
+        public void GetArea_GoodSideAndAngles_ReturnAreaEquals12p25()
         {
             double side = 7;
             double firstAngle = 45;

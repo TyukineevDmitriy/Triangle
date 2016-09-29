@@ -8,24 +8,24 @@ namespace Triangle
 {
     public class Triangle
     {
-        public double[] sides;
+        private double[] Sides;
 
         private Triangle(double firstSide, double secondSide, double thirdSide)
         {
-            sides = new double[] { firstSide, secondSide, thirdSide };
+            Sides = new double[] { firstSide, secondSide, thirdSide };
         }
 
         public static Triangle CreateByThreeSides(double firstSide, double secondSide, double thirdSide)
         {
             if (!CheckSidesOnValidity(firstSide, secondSide, thirdSide))
-                throw new System.ArgumentException("All sides must be greater than 0");
+                throw new ArgumentException("All sides must be greater than 0");
             return new Triangle(firstSide, secondSide, thirdSide);
                 
         }
         public static Triangle CreateByTwoSidesAndAngle(double firstSide, double secondSide, double angle)
         {
             if (!CheckSidesOnValidity(firstSide, secondSide) || !CheckAnglesOnValidity(angle))
-                throw new System.ArgumentException("All sides must be greater than 0 and angle must be in open interval from 0 to 180");
+                throw new ArgumentException("All sides must be greater than 0 and angle must be in open interval from 0 to 180");
             double thirdSide = Math.Sqrt(Math.Pow(firstSide, 2) + Math.Pow(secondSide, 2) 
                 - 2 * firstSide * secondSide * Math.Cos(ToRadians(angle)));
             return new Triangle(firstSide, secondSide, thirdSide);
@@ -33,7 +33,7 @@ namespace Triangle
         public static Triangle CreateBySideAndTwoAngle(double side, double firstAngle, double secondAngle)
         {
             if (!CheckSidesOnValidity(side) || !CheckAnglesOnValidity(firstAngle, secondAngle))
-                throw new System.ArgumentException("Side must be greater than 0, angles must be in open interval from 0 to 180 and their sum must be less then 180");
+                throw new ArgumentException("Side must be greater than 0, angles must be in open interval from 0 to 180 and their sum must be less then 180");
             double thirdAngle = 180 - firstAngle - secondAngle;
             double firstSide = side * Math.Sin(ToRadians(firstAngle)) / Math.Sin(ToRadians(thirdAngle));
             double secondSide = side * Math.Sin(ToRadians(secondAngle)) / Math.Sin(ToRadians(thirdAngle));
@@ -45,8 +45,8 @@ namespace Triangle
         }
         public double GetArea()
         {
-            double p = (sides[0] + sides[1] + sides[2]) / 2;
-            return Math.Sqrt(p * (p - sides[0]) * (p - sides[1]) * (p - sides[2]));
+            double p = (Sides[0] + Sides[1] + Sides[2]) / 2;
+            return Math.Sqrt(p * (p - Sides[0]) * (p - Sides[1]) * (p - Sides[2]));
         }
         private static bool CheckSidesOnValidity(params double[] sides)
         {
